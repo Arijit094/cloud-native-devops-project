@@ -93,7 +93,7 @@ jobs:
     
     updatek8s:
           runs-on: ubuntu-latest
-          needs: [build, code-quality, docker]
+          needs: [docker]
 
     # Required so GITHUB_TOKEN can push changes back to the repo
           permissions:
