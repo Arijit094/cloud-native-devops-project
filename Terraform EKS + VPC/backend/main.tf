@@ -20,9 +20,7 @@ provider "aws" {
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "terraform-eks-state-bucket-arijit094"
 
-  lifecycle {
-    prevent_destroy = false
-  }
+ 
 }
 
 resource "aws_s3_bucket_versioning" "demo_bucket" {
@@ -43,7 +41,5 @@ resource "aws_dynamodb_table" "demo-dynamodb-table" {
     name = "LockID"
     type = "S"
   }
-  lifecycle {
-    prevent_destroy = true
-  }
+  
 }  
