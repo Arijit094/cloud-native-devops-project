@@ -115,9 +115,13 @@ jobs:
               git config --global user.email "arijitmanna55@gmail.com"
               git add kubernetes/productcatalog/deploy.yaml
         
-              git diff --staged --quiet || git commit -m "ci: updating product-catalog image tag to ${{ github.run_id }} [skip ci]"
+              git diff --staged --quiet || git commit -m "ci: update product-catalog image tag to ${{ github.run_id }} [skip ci]"
+          
+              # Pull latest remote changes to avoid rejected pushes
+              git fetch origin ${{ github.head_ref }}
+              git rebase origin/${{ github.head_ref }}
+          
               git push origin HEAD:${{ github.head_ref }}
-
         
         
           
