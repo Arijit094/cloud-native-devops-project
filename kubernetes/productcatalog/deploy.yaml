@@ -27,7 +27,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: productcatalogservice
-          image: arijit094/product-catalog:latest
+          image: arijit094/product-catalog:31775804464
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -53,5 +53,5 @@ spec:
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=1.12.0
           resources:
-            limits:
-              memory: 50Mi
+          limits:
+            memory: 50Mi

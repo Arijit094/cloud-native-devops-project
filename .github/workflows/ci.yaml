@@ -6,6 +6,7 @@ on:
     pull_request:
         branches:
         - main
+    
 
 jobs:
     build:
@@ -93,7 +94,7 @@ jobs:
     
     updatek8s:
           runs-on: ubuntu-latest
-          needs: [build, code-quality, docker]
+          needs: [docker]
 
     # Required so GITHUB_TOKEN can push changes back to the repo
           permissions:
@@ -103,20 +104,31 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v4
             with:
-             token: ${{ secrets.GITHUB_TOKEN }}
+              # Check out the actual source branch of the PR (e.g., githubcicheck) instead of a detached HEAD
+              ref: ${{ github.head_ref }}
+              # Use default GitHub token for authentication
+              token: ${{ secrets.GITHUB_TOKEN }}
+              # Fetch all history for the repo
+              fetch-depth: 0
 
           - name: Update tag in kubernetes deployment manifest
             run: |
               sed -i 's|image: arijit094/product-catalog:.*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{ github.run_id }}|g' kubernetes/productcatalog/deploy.yaml
-
+              # Displays the exact git changes in the workflow log so you can visually verify the replacement
+              git diff kubernetes/productcatalog/deploy.yaml
           - name: Commit and push changes
             run: |
               git config --global user.name "@rijit"
               git config --global user.email "arijitmanna55@gmail.com"
               git add kubernetes/productcatalog/deploy.yaml
-              git commit -m "Update product-catalog image tag to ${{ github.run_id }}"
-              git push
-
+        
+              git diff --staged --quiet || git commit -m "ci: update product-catalog image tag to ${{ github.run_id }} [skip ci]"
+          
+              # Pull latest remote changes to avoid rejected pushes
+              git fetch origin ${{ github.head_ref }}
+              git rebase origin/${{ github.head_ref }}
+          
+              git push origin HEAD:${{ github.head_ref }}
         
         
           
