@@ -6,8 +6,7 @@
 [![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-red)]()
 [![Observability](https://img.shields.io/badge/Observability-OpenTelemetry-blue)]()
 
-> I took the official OpenTelemetry e-commerce demo and transformed it into a complete **production-grade** platform on AWS. Below is everything I implemented end-to-end:
-
+> I took the official OpenTelemetry e-commerce demo and transformed it into a complete **production-grade** platform on AWS. 
 
 ---
 
@@ -57,7 +56,7 @@ Below is everything I implemented end-to-end:
 - Installed and configured ArgoCD
 - Converted the project into a full GitOps model
 - Deployed the entire application using ArgoCD
-- Implemented CI pipeline using GitHub Actions for microservices
+- Implemented a CI pipeline using GitHub Actions for microservices
 - Built a complete end-to-end CI/CD pipeline (GitHub Actions → ArgoCD)
 
 ### Observability
@@ -81,4 +80,17 @@ Below is everything I implemented end-to-end:
 | **GitOps**                 | ArgoCD                                            |
 | **CI/CD**                  | GitHub Actions                                    |
 | **Observability**          | OpenTelemetry, Prometheus, Grafana, Jaeger        |
+
+## End-to-End Flow Diagram
+
+Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
+                           ↓
+                 Terraform (Infrastructure)
+                           ↓
+         VPC + EKS + IAM + Route53 + Ingress
+                           ↓
+              Microservices + Observability Stack
+         (OpenTelemetry → Prometheus + Grafana + Jaeger)
+
+![Project Architecture Flow](./docs/project-architecture.jpeg)
 
