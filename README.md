@@ -6,9 +6,7 @@
 [![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-red)]()
 [![Observability](https://img.shields.io/badge/Observability-OpenTelemetry-blue)]()
 
-> End-to-end production-ready multi-microservice e-commerce platform built on the official OpenTelemetry Demo.  
-> Fully automated infrastructure, GitOps deployment, and complete observability stack.
-> Official documentation: https://opentelemetry.io/docs/demo/
+> I took the official OpenTelemetry e-commerce demo and transformed it into a complete **production-grade** platform on AWS. Below is everything I implemented end-to-end:
 
 
 ---
@@ -17,46 +15,70 @@
 
 ![Architecture Diagram](./docs/architecture.png.png)
 
-**High-level flow:**
-- Users → Route53 → ALB/Ingress → Frontend
-- Microservices communicate via gRPC/HTTP
-- All services instrumented with OpenTelemetry
-- Traces → Jaeger | Metrics → Prometheus | Dashboards → Grafana
-- GitOps continuous delivery with ArgoCD
-- Infrastructure fully managed by Terraform
+## What I Built / Key Features
 
----
+Below is everything I implemented end-to-end:
 
-## What I Built (Key Features)
 
-- Complete AWS infrastructure using Terraform (VPC, EKS, IAM, Route53, etc.)
-- Containerized all microservices + local testing with Docker Compose
-- Production-grade Kubernetes manifests (Deployments, Services, HPA, Resource limits, High Availability)
-- Custom domain mapping with Route53
-- Full GitOps workflow using ArgoCD
-- CI pipeline with GitHub Actions
-- Complete Observability stack:
+### Infrastructure & AWS Setup
+- Designed and created IAM users and IAM roles with least privilege
+- Launched and configured EC2 instances
+- Created and hardened Security Groups with proper inbound/outbound rules
+- Fully automated infrastructure using Terraform:
+  - VPC, Subnets, Internet Gateway, NAT Gateway
+  - EKS Cluster with managed node groups
+  - IAM roles for EKS, nodes, and service accounts
+  - Route53 hosted zone and DNS records
+  - Remote backend (S3 + DynamoDB) for Terraform state with state locking
+
+### Containerization & Local Development
+- Containerized all microservices using Docker
+- Created multi-service `docker-compose.yml` for local development and testing
+- Built and ran the complete application locally using Docker Compose
+- Verified all services and inter-service communication locally
+
+### Kubernetes
+- Wrote production-ready Kubernetes manifests:
+  - Deployments (with resource requests/limits and high availability)
+  - Services
+  - Ingress resources
+  - PersistentVolumes and PersistentVolumeClaims
+  - StorageClass
+- Installed and configured NGINX Ingress Controller
+- Deployed the entire application on EKS
+- Verified all pods, services, and networking
+
+### Networking & Domain
+- Configured custom domain
+- Set up Route53 records pointing to the EKS Ingress
+- Configured Ingress with the custom domain
+
+### GitOps & CI/CD
+- Installed and configured ArgoCD
+- Converted the project into a full GitOps model
+- Deployed the entire application using ArgoCD
+- Implemented CI pipeline using GitHub Actions for microservices
+- Built a complete end-to-end CI/CD pipeline (GitHub Actions → ArgoCD)
+
+### Observability
+- Fully instrumented the application with **OpenTelemetry**
+- Deployed and configured:
   - OpenTelemetry Collector
   - Prometheus
   - Grafana
   - Jaeger
-- End-to-end automated deployment from code commit to production
-
----
-
+- Created dashboards and verified distributed tracing, metrics, and logs
+  
 ## Tech Stack
 
-| Category              | Tools                                      |
-|-----------------------|--------------------------------------------|
-| Cloud                 | AWS (EKS, IAM, Route53, VPC, ALB)          |
-| Infrastructure as Code| Terraform                                  |
-| Containerization      | Docker, Docker Compose                     |
-| Orchestration         | Kubernetes                                 |
-| GitOps                | ArgoCD                                     |
-| CI/CD                 | GitHub Actions                             |
-| Observability         | OpenTelemetry, Prometheus, Grafana, Jaeger |
-| Service Mesh / Networking | Kubernetes Services, Ingress            |
+| Category                   | Technologies                                      |
+|----------------------------|---------------------------------------------------|
+| **Cloud Provider**         | AWS (EKS, EC2, IAM, VPC, Route53, S3, DynamoDB)   |
+| **Infrastructure as Code** | Terraform                                         |
+| **Containerization**       | Docker, Docker Compose                            |
+| **Orchestration**          | Kubernetes (EKS)                                  |
+| **Ingress**                | AWS Load Balancer Controller                      |
+| **GitOps**                 | ArgoCD                                            |
+| **CI/CD**                  | GitHub Actions                                    |
+| **Observability**          | OpenTelemetry, Prometheus, Grafana, Jaeger        |
 
----
-
-## Project Structure
