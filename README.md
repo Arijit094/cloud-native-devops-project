@@ -8,6 +8,8 @@
 
 > End-to-end production-ready multi-microservice e-commerce platform built on the official OpenTelemetry Demo.  
 > Fully automated infrastructure, GitOps deployment, and complete observability stack.
+> Official documentation: https://opentelemetry.io/docs/demo/
+
 
 ---
 
