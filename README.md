@@ -83,7 +83,13 @@ Below is everything I implemented end-to-end:
 
 ## End-to-End Flow Diagram
 
-## ![Project Architecture Flow](./docs/project-architecture.jpeg)
-
+-  Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
+                           ↓
+                 Terraform (Infrastructure)
+                           ↓
+         VPC + EKS + IAM + Route53 + Ingress
+                           ↓
+              Microservices + Observability Stack
+         (OpenTelemetry → Prometheus + Grafana + Jaeger)
 
 
