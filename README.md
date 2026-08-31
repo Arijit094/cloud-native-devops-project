@@ -43,7 +43,7 @@ Below is everything I implemented end-to-end:
   - Ingress resources
   - PersistentVolumes and PersistentVolumeClaims
   - StorageClass
-- Installed and configured NGINX Ingress Controller
+- Installed and configured AWS Load Balancer Controller
 - Deployed the entire application on EKS
 - Verified all pods, services, and networking
 
@@ -83,16 +83,7 @@ Below is everything I implemented end-to-end:
 
 ## End-to-End Flow Diagram
 
-  Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
-                           ↓
-                 Terraform (Infrastructure)
-                           ↓
-         VPC + EKS + IAM + Route53 + Ingress
-                           ↓
-              Microservices + Observability Stack
-         (OpenTelemetry → Prometheus + Grafana + Jaeger)
-
-
-
 ## ![Project Architecture Flow](./docs/project-architecture.jpeg)
+
+
 
