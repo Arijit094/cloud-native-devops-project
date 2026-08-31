@@ -83,7 +83,7 @@ Below is everything I implemented end-to-end:
 
 ## End-to-End Flow Diagram
 
-Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
+  Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
                            ↓
                  Terraform (Infrastructure)
                            ↓
