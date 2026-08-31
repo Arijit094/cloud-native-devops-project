@@ -85,6 +85,7 @@ Below is everything I implemented end-to-end:
 
 
   Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster 
+  
                             ↓
                             
                  Terraform (Infrastructure)
