@@ -92,5 +92,7 @@ Developer → GitHub → GitHub Actions (CI) → ArgoCD (GitOps) → EKS Cluster
               Microservices + Observability Stack
          (OpenTelemetry → Prometheus + Grafana + Jaeger)
 
-![Project Architecture Flow](./docs/project-architecture.jpeg)
+
+
+## ![Project Architecture Flow](./docs/project-architecture.jpeg)
 
