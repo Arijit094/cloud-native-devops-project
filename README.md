@@ -122,3 +122,12 @@ Make sure you have the following tools installed:
 git clone https://github.com/Arijit094/cloud-native-devops-project.git
 cd cloud-native-devops-project
 
+### 3. Local Development (Docker Compose)
+- To run the entire application locally:
+
+```bash
+docker compose up -d --build
+
+- Access the application at: http://localhost:8080
+
+
