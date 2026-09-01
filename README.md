@@ -100,3 +100,25 @@ Below is everything I implemented end-to-end:
        (OpenTelemetry → Prometheus + Grafana + Jaeger)
 
 
+
+## Deployment Guide
+
+This section explains how to deploy the complete project from scratch.
+
+### 1. Prerequisites
+
+Make sure you have the following tools installed:
+
+- AWS CLI (configured with appropriate credentials)
+- Terraform >= 1.5
+- kubectl
+- Docker & Docker Compose
+- Helm
+- Git
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/Arijit094/cloud-native-devops-project.git
+cd cloud-native-devops-project
+
