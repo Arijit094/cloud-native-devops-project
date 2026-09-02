@@ -142,6 +142,9 @@ Navigate to the Terraform directory to provision the required cloud infrastructu
   
   # Apply infrastructure changes
   terraform apply
+  
+  - Once provisioning is complete, update your local kubeconfig to connect to your EKS cluster:
+aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
 
 
 
