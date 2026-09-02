@@ -118,16 +118,39 @@ Make sure you have the following tools installed:
 
 ### 2. Clone the Repository
 
-```bash
+
 git clone https://github.com/Arijit094/cloud-native-devops-project.git
 cd cloud-native-devops-project
 
 ### 3. Local Development (Docker Compose)
-- To run the entire application locally:
+Spin up the local containerized environment to test changes locally:
 
-```bash
-docker compose up -d --build
+  # Build and start services in detached mode
+  docker compose up -d --build
+  # To stop and remove local containers:
+  docker compose down
+  
+### 4. Infrastructure Provisioning with Terraform
+Navigate to the Terraform directory to provision the required cloud infrastructure:
 
-- Access the application at: http://localhost:8080
+  cd terraform
+  # Initialize directory and plugins
+  terraform init
+  
+  # Review execution plan
+  terraform plan
+  
+  # Apply infrastructure changes
+  terraform apply
+
+
+
+
+
+
+
+
+
+
 
 
